@@ -4,4 +4,10 @@ xcode_project: ios/AwesomeProject.xcodeproj
 xcode_sdk: iphonesimulator9.2
 
 deploy:
-	skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: EbiXSKxfmwWhQjURabWUPTc9VzTaKrODsXu8RrqQDu2tc/7cMZMg4rX5pZ2km4+0XWyZljOlIOjZS9DoXUs8uoHPXXYSrdaVYkrpIfWp3qD1caOuMOFibtAX1GW+jAwPX+eY1OIi3C2yu5JjU87jT/yNTOn4fOvYn+egzR3iB6E1jbuk2VcJV60VF0zPX+0d5+gpsNlJ0XfR6+M9/9Ei4LysaIC8//5yfQ/aElpDl86z/Nh7f0SVWgttmamS1CVLRmnUMjSn1gba0iQKhGWBIe4j+UtxO2tccDyRlRCZCMgQNRjb9W0LegjD/ilgb9ixi8pslWhnnep8CkU5SeMyZg10T9zQVUDPhgBEtx7L7yDJsOW4ilr5V0mTCKlZnmzXKut0qvPf1hbxLyrAdwpWHMgJKwVvlhqlCO+1ptDaCxD207b2hIMWHyi+Yy8sKNtpTtmo4QI/xDJfxtx6uVD6zvYNpOOweB4FLOCzUQiKxg3VY4d/WyidLxTmnj0KkwoK11Nn+v28gvM72kWCVt8MCss1X0K9nBK38CqQhuI3NpKCDYEaJAuAqk2OUGIX8ySoYVS0o6L4Hd/KmGwo0vFRestaPVYhsHrZjDOwoVSyYOjplf567vI0Y7x4XEB2ugWAXMKsLIgra6UACPC+3XE1xu8rC2v7pc8YYgfCNPP9ZEI=
+  file: AwesomeProject.ipa
+  skip_cleanup: true
+  on:
+    tags: true
