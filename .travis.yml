@@ -2,8 +2,10 @@ language: objective-c
 #osx_image: xcode8.2
 #xcode_project: ios/AwesomeProject.xcodeproj
 #xcode_sdk: iphonesimulator9.2
+
 script:
-xcodebuild -project ios/AwesomeProject.xcodeproj -target React -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+  - xcodebuild -project ios/AwesomeProject.xcodeproj -scheme AwesomeProject -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.2'
+  - xcodebuild test -project ios/AwesomeProject.xcodeproj -scheme AwesomeProject -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.2'
 
 deploy:
   provider: releases
