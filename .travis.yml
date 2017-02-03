@@ -3,3 +3,5 @@ osx_image: xcode8.2
 xcode_project: ios/AwesomeProject.xcodeproj
 xcode_sdk: iphonesimulator9.2
 
+deploy:
+	skip_cleanup: true
