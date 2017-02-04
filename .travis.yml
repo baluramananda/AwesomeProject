@@ -3,6 +3,13 @@ language: objective-c
 #xcode_project: ios/AwesomeProject.xcodeproj
 #xcode_sdk: iphonesimulator9.2
 
+before_install: 
+  - nvm install 6
+  - node --version
+
+install: 
+  - npm install
+
 script:
   - xcodebuild -project ios/AwesomeProject.xcodeproj -scheme AwesomeProject -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
   - xcodebuild test -project ios/AwesomeProject.xcodeproj -scheme AwesomeProject -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
