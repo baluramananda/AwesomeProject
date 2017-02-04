@@ -1,7 +1,8 @@
 language: objective-c
-osx_image: xcode8.2
-xcode_project: ios/AwesomeProject.xcodeproj
-xcode_sdk: iphonesimulator9.2
+#osx_image: xcode8.2
+#xcode_project: ios/AwesomeProject.xcodeproj
+#xcode_sdk: iphonesimulator9.2
+
 script:
 - xcodebuild -project ios/AwesomeProject.xcodeproj -scheme AwesomeProject -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
 env:
