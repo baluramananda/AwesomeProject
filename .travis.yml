@@ -18,9 +18,8 @@ before_script:
 
 script:
   - npm test
-  - xcodebuild archive -project ./ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration RELEASE -derivedDataPath ./ios/build -archivePath ./ios/build/Products/AwesomeProject.xcarchive
-#  - xcodebuild -project ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration RELEASE OBJROOT=$PWD/build SYMROOT=$PWD/build -sdk iphoneos
-#  - xcodebuild -project ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration RELEASE OBJROOT=$PWD/build SYMROOT=$PWD/build -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
+  - xcodebuild -project $PWD/ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration RELEASE OBJROOT=$PWD/ios/build SYMROOT=$PWD/ios/build -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
+  - xcodebuild archive -project $PWD/ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration RELEASE -derivedDataPath $PWD/ios/build -archivePath $PWD/ios/build/Products/AwesomeProject.xcarchive
 #  - xcodebuild test -project ios/AwesomeProject.xcodeproj -scheme AwesomeProject -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
 
 after_success:
