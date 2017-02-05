@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Create a custom keychain and add it to the list
-security create-keychain -p travis ios-build.keychain
+security create-keychain -p travis  ios-build.keychain
 security list-keychains -d user -s ios-build.keychain
 
 # Make the custom keychain default, so xcodebuild will use it for signing
