@@ -19,6 +19,9 @@ security import ./scripts/ios/certs/AppleWWDRCA.cer -k ~/Library/Keychains/ios-b
 security import ./scripts/ios/certs/dist.cer -k ~/Library/Keychains/ios-build.keychain -T /usr/bin/codesign
 security import ./scripts/ios/certs/dist.p12 -k ~/Library/Keychains/ios-build.keychain -P $KEY_PASSWORD -T /usr/bin/codesign
 
+# fix the travis stalling issue
+security set-key-partition-list -S apple-tool:,apple: -s -k travis  ios-build.keychain
+
 # Put the provisioning profile in place
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 cp "./scripts/ios/profile/$PROFILE_NAME.mobileprovision" ~/Library/MobileDevice/Provisioning\ Profiles/
