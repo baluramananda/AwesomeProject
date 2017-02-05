@@ -11,9 +11,9 @@ install:
   - npm install
 
 before_script:
-  - openssl aes-256-cbc -k "$KEY_SECRET" -in scripts/ios/profile/AwesomeProject_Ad_Hoc.mobileprovision.enc -d -a -out scripts/ios/profile/AwesomeProject_Ad_Hoc.mobileprovision
-  - openssl aes-256-cbc -k "$KEY_SECRET" -in scripts/ios/certs/dist.cer.enc -d -a -out scripts/ios/certs/dist.cer
-  - openssl aes-256-cbc -k "$KEY_SECRET" -in scripts/ios/certs/dist.p12.enc -d -a -out scripts/ios/certs/dist.p12
+  - openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/profile/AwesomeProject_Ad_Hoc.mobileprovision.enc -d -a -out scripts/ios/profile/AwesomeProject_Ad_Hoc.mobileprovision
+  - openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/certs/dist.cer.enc -d -a -out scripts/ios/certs/dist.cer
+  - openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/certs/dist.p12.enc -d -a -out scripts/ios/certs/dist.p12
   - ./scripts/ios/add-key.sh
 
 script:
