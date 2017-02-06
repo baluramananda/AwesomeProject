@@ -23,6 +23,7 @@ script:
 #  - xcodebuild test -project ios/AwesomeProject.xcodeproj -scheme AwesomeProject -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
 
 after_success:
+  - gem update CFPropertyList
   - ./scripts/ios/sign.sh
 
 after_script:
