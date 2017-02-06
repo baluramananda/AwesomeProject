@@ -34,8 +34,8 @@ script:
   - "./scripts/build.sh"
 
 after_success:
-#  - rvm system
-#  - gem update CFPropertyList
+  - rvm system
+  - gem update CFPropertyList
 #  - "./scripts/ios/sign.sh"
   - "./scripts/package.sh"
 
