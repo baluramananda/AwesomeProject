@@ -9,14 +9,11 @@ if [[ "$TRAVIS_BRANCH" != "master" ]]; then
   exit 0
 fi
 
-openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/profile/AwesomeProject_Ad_Hoc.mobileprovision.enc -d -a -out scripts/ios/profile/AwesomeProject_Ad_Hoc.mobileprovision
-openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/certs/dist.cer.enc -d -a -out scripts/ios/certs/dist.cer
-openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/certs/dist.p12.enc -d -a -out scripts/ios/certs/dist.p12
-
 #PROVISIONING_PROFILE="$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_NAME.mobileprovision"
 PROVISIONING_PROFILE="$HOME/Library/MobileDevice/Provisioning Profiles/AwesomeProject_Ad_Hoc.mobileprovision"
 #OUTPUTDIR="$PWD/build/Release-iphoneos"
 
 #xcodebuild archive -project ./ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration RELEASE -derivedDataPath ./ios/build -archivePath ./ios/build/Products/AwesomeProject.xcarchive
 
+# running exportArchive
 xcodebuild -exportArchive -archivePath ./ios/build/Products/AwesomeProject.xcarchive -exportOptionsPlist ./scripts/ios/exportOptions-Release.plist -exportPath ./ios/build/Products/IPA
