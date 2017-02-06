@@ -23,6 +23,7 @@ export default class AwesomeProject extends Component {
           To get started, edit index.ios.js
         </Text>
         <Text style={styles.instructions}>
+	  Hello World!{'\n'}
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
