@@ -24,6 +24,7 @@ export default class AwesomeProject extends Component {
         </Text>
         <Text style={styles.instructions}>
 	  Hello World!{'\n'}
+	  This is a test app build using RN!
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
