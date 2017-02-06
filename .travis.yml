@@ -1,47 +1,45 @@
 language: objective-c
 osx_image: xcode8.2
-#xcode_project: ios/AwesomeProject.xcodeproj
-#xcode_sdk: iphonesimulator9.2
 
-before_install: 
-  - nvm install 6
-  - node --version
+before_install:
+- nvm install 6
+- node --version
 
-install: 
-  - npm install
+install:
+- npm install
 
 before_script:
-  - openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/profile/AwesomeProject_Ad_Hoc.mobileprovision.enc -d -a -out scripts/ios/profile/AwesomeProject_Ad_Hoc.mobileprovision
-  - openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/certs/dist.cer.enc -d -a -out scripts/ios/certs/dist.cer
-  - openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/certs/dist.p12.enc -d -a -out scripts/ios/certs/dist.p12
-  - ./scripts/ios/add-key.sh
+- openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/profile/AwesomeProject_Ad_Hoc.mobileprovision.enc
+  -d -a -out scripts/ios/profile/AwesomeProject_Ad_Hoc.mobileprovision
+- openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/certs/dist.cer.enc -d -a
+  -out scripts/ios/certs/dist.cer
+- openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/certs/dist.p12.enc -d -a -out scripts/ios/certs/dist.p12
+- "./scripts/ios/add-key.sh"
 
 script:
-  - npm test
-  - xcodebuild -project $PWD/ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration RELEASE OBJROOT=$PWD/ios/build SYMROOT=$PWD/ios/build -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
-  - xcodebuild archive -project $PWD/ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration RELEASE -derivedDataPath $PWD/ios/build -archivePath $PWD/ios/build/Products/AwesomeProject.xcarchive
-#  - xcodebuild test -project ios/AwesomeProject.xcodeproj -scheme AwesomeProject -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
+- npm test
+- xcodebuild -project $PWD/ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration
+  RELEASE OBJROOT=$PWD/ios/build SYMROOT=$PWD/ios/build -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
+- xcodebuild archive -project $PWD/ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration RELEASE -derivedDataPath $PWD/ios/build -archivePath $PWD/ios/build/Products/AwesomeProject.xcarchive
 
 after_success:
-  - rvm system
-  - gem update CFPropertyList
-  - ./scripts/ios/sign.sh
+- rvm system
+- gem update CFPropertyList
+- "./scripts/ios/sign.sh"
 
 after_script:
-  - ./scripts/ios/remove-key.sh
+- "./scripts/ios/remove-key.sh"
 
 env:
   global:
-  -  secure: YRkT8Wff3udW4diymm/NB1wEg22rSz+S/RowlG6li3eE//RtCPLNrBSmazGNpw9UuDvBApc0EneuYgt6hGdXQSMURg5dtvcd5VTd5qbtwuAKy0d5IOjtdZA0KKeibsYqjoXnKNdTaP0cgpi52dHSQO9YdGUzUXzDcG5Jys30gwnekecYsKvXcvZoTdtRIUHnwHteuJNEWzG+o3uCAqTltvPWiFOQ1a41GKh695EOlYXLMwPAinB9n4zbGVpJeOb5KgMl5/KhrJYSeaCkJ589EBImmHILZj9X7e/hIW4Wuumktj38J59Q/elWWMADMNkqu9+n14yI6ughNEOSs8ONqw7Pqysgw3dOHQdHKuL+6PIz3BjutWvurawSk4ULpP3EJjs3e4Gl989uS/vKwsK9R/d0UsNtnMORMxShv9qnWIVFBktwPShaRBW6DvS+/AS9epD0pdSNHDT4owXULhTE19ab67RjDxFDDB7LzTJBSyd/7/QeckbaJ6iIbcJbrcA8TojM7VXDexsk5Y/M9CV8sSVTecwMDQd2AYOjpLPXfwJy2IOD/f8VqDRT8OIZyqoWIsUJDqUitslZY96Hpf89jAqPlAXfP4K2JmjBYsuZnyyBJG6ZNqtNaW5FtESh38eyfQYcK2dxu9dwoWDoeYU0KI+gvVKZuVDptvdcRNVD7do=
-  -  APP_NAME="AwesomeProject"
-  -  'DEVELOPER_NAME="iPhone Distribution: Balu Ramananda (25EA2RY9XB)"'
-  -  PROFILE_NAME="AwesomeProject_Ad_Hoc"
+  - secure: YRkT8Wff3udW4diymm/NB1wEg22rSz+S/RowlG6li3eE//RtCPLNrBSmazGNpw9UuDvBApc0EneuYgt6hGdXQSMURg5dtvcd5VTd5qbtwuAKy0d5IOjtdZA0KKeibsYqjoXnKNdTaP0cgpi52dHSQO9YdGUzUXzDcG5Jys30gwnekecYsKvXcvZoTdtRIUHnwHteuJNEWzG+o3uCAqTltvPWiFOQ1a41GKh695EOlYXLMwPAinB9n4zbGVpJeOb5KgMl5/KhrJYSeaCkJ589EBImmHILZj9X7e/hIW4Wuumktj38J59Q/elWWMADMNkqu9+n14yI6ughNEOSs8ONqw7Pqysgw3dOHQdHKuL+6PIz3BjutWvurawSk4ULpP3EJjs3e4Gl989uS/vKwsK9R/d0UsNtnMORMxShv9qnWIVFBktwPShaRBW6DvS+/AS9epD0pdSNHDT4owXULhTE19ab67RjDxFDDB7LzTJBSyd/7/QeckbaJ6iIbcJbrcA8TojM7VXDexsk5Y/M9CV8sSVTecwMDQd2AYOjpLPXfwJy2IOD/f8VqDRT8OIZyqoWIsUJDqUitslZY96Hpf89jAqPlAXfP4K2JmjBYsuZnyyBJG6ZNqtNaW5FtESh38eyfQYcK2dxu9dwoWDoeYU0KI+gvVKZuVDptvdcRNVD7do=
+  - APP_NAME="AwesomeProject"
+  - 'DEVELOPER_NAME="iPhone Distribution: Balu Ramananda (25EA2RY9XB)"'
+  - PROFILE_NAME="AwesomeProject_Ad_Hoc"
 
-#deploy:
-#  provider: releases
-#  api_key:
-#    secure: EbiXSKxfmwWhQjURabWUPTc9VzTaKrODsXu8RrqQDu2tc/7cMZMg4rX5pZ2km4+0XWyZljOlIOjZS9DoXUs8uoHPXXYSrdaVYkrpIfWp3qD1caOuMOFibtAX1GW+jAwPX+eY1OIi3C2yu5JjU87jT/yNTOn4fOvYn+egzR3iB6E1jbuk2VcJV60VF0zPX+0d5+gpsNlJ0XfR6+M9/9Ei4LysaIC8//5yfQ/aElpDl86z/Nh7f0SVWgttmamS1CVLRmnUMjSn1gba0iQKhGWBIe4j+UtxO2tccDyRlRCZCMgQNRjb9W0LegjD/ilgb9ixi8pslWhnnep8CkU5SeMyZg10T9zQVUDPhgBEtx7L7yDJsOW4ilr5V0mTCKlZnmzXKut0qvPf1hbxLyrAdwpWHMgJKwVvlhqlCO+1ptDaCxD207b2hIMWHyi+Yy8sKNtpTtmo4QI/xDJfxtx6uVD6zvYNpOOweB4FLOCzUQiKxg3VY4d/WyidLxTmnj0KkwoK11Nn+v28gvM72kWCVt8MCss1X0K9nBK38CqQhuI3NpKCDYEaJAuAqk2OUGIX8ySoYVS0o6L4Hd/KmGwo0vFRestaPVYhsHrZjDOwoVSyYOjplf567vI0Y7x4XEB2ugWAXMKsLIgra6UACPC+3XE1xu8rC2v7pc8YYgfCNPP9ZEI=
-#  file: AwesomeProject.ipa
-#  skip_cleanup: true
-#  on:
-#    tags: true
+deploy:
+  provider: testfairy
+  api-key:
+    secure: A4b2rerqeJRZ8Ph4xM7nIwR4o1U6N5Eu1qfj9CauvOUMY9hPvuJyObsqi389B2gtDnJmYuv7681BZ6kek2jmzbuJxQOdCy+cjvpSVUXLyksg2UrhRcFdXDKOMeGapihbZ8GYS9sg5LtGt/iLebO18a3mIzkZ6eZhEOdu3u7hT0Nnu9ohof+BfWt/UmsBokO0PCa2hrCUZK3jMlL9akAKTZNATTBaYe2lHkzKsoIYTwm+PWO/VkYX11KVRD2XYMYZUl/l6b96oPJaHaQPu92RqLP83ABQkG2xRHUSrl6c+QNmZbcvPa+AX9GfWgh3kckJl7KwSQCw6dGhIiQZLAKWsLl1ETjp1n2Z2IHqG9VgrhcerG12RgRIZxN2Q2J4ZqbWLKsQf9PiZvkmJDFUAkt1r3tkul0R4uEvsJZThALJMAfpfBm1iwch3v6wlEIWgauSGktXM6gH6FTMfgwJX0/yBK/ReKmrkMb6xokoXwtiPVFGQiJdZn2ZLJVWLaEC696vNNlrrvTJrNh5RFnoesdMMdkNEusU7MzccwEFRLj+iV66XFpIhCp6CWU6C7CsEAIEQUqvWC+70NBHcTDOltVi9lG7JrHw6QPMjAOA4oKzpWVi3rx57MwhPDDuo3mOFGYe4x0F9XrAaKH9M1NNXn1OxfMwsi3UOUzz9KF5p8D74ZU=
+  app-file: /Users/travis/build/baluramananda/AwesomeProject/ios/build/Products/IPA/AwesomeProject.ipa
+  testers-groups: dev
