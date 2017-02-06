@@ -4,6 +4,7 @@ matrix:
     - language: objective-c
       osx_image: xcode8.2
       env: DEV=IOS
+  exclude:
     - language: android
       osx_image: xcode8.2
       env: DEV=ANDROID
