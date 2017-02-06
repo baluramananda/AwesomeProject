@@ -1,5 +1,12 @@
-language: objective-c
-osx_image: xcode8.2
+language: android
+matrix:
+  include:
+    - language: objective-c
+      osx_image: xcode8.2
+      env: DEV=IOS
+    - language: android
+      osx_image: xcode8.2
+      env: DEV=ANDROID
 
 branches:
   only:
@@ -13,23 +20,27 @@ install:
   - npm install
 
 before_script:
-  - openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/profile/AwesomeProject_Ad_Hoc.mobileprovision.enc -d -a -out scripts/ios/profile/AwesomeProject_Ad_Hoc.mobileprovision
-  - openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/certs/dist.cer.enc -d -a -out scripts/ios/certs/dist.cer
-  - openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/certs/dist.p12.enc -d -a -out scripts/ios/certs/dist.p12
-  - "./scripts/ios/add-key.sh"
+#  - openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/profile/AwesomeProject_Ad_Hoc.mobileprovision.enc -d -a -out scripts/ios/profile/AwesomeProject_Ad_Hoc.mobileprovision
+#  - openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/certs/dist.cer.enc -d -a -out scripts/ios/certs/dist.cer
+#  - openssl aes-256-cbc -k "$KEY_PASSWORD" -in scripts/ios/certs/dist.p12.enc -d -a -out scripts/ios/certs/dist.p12
+#  - "./scripts/ios/add-key.sh"
+  - "./scripts/before.sh"
 
 script:
   - npm test
-  - xcodebuild -project $PWD/ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration RELEASE OBJROOT=$PWD/ios/build SYMROOT=$PWD/ios/build -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
-  - xcodebuild archive -project $PWD/ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration RELEASE -derivedDataPath $PWD/ios/build -archivePath $PWD/ios/build/Products/AwesomeProject.xcarchive
+#  - xcodebuild -project $PWD/ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration RELEASE OBJROOT=$PWD/ios/build SYMROOT=$PWD/ios/build -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
+#  - xcodebuild archive -project $PWD/ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration RELEASE -derivedDataPath $PWD/ios/build -archivePath $PWD/ios/build/Products/AwesomeProject.xcarchive
+  - "./scripts/build.sh"
 
 after_success:
-  - rvm system
-  - gem update CFPropertyList
-  - "./scripts/ios/sign.sh"
+#  - rvm system
+#  - gem update CFPropertyList
+#  - "./scripts/ios/sign.sh"
+  - "./scripts/package.sh"
 
 after_script:
-  - "./scripts/ios/remove-key.sh"
+#  - "./scripts/ios/remove-key.sh"
+  - "./scripts/clean-up.sh"
 
 env:
   global:
