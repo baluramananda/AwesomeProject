@@ -6,5 +6,5 @@ if [[ "$DEV" = "IOS" ]]; then
 fi
 
 if [[ "$DEV" = "ANDROID" ]]; then
-  $PWD/android/gradlew assembleRelease
+  $PWD/android/gradlew build
 fi
