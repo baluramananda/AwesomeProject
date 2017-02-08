@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [[ "$DEV" = "IOS" ]]; then
   scripts/ios/remove-key.sh
