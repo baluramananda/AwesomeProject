@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [[ "$DEV" = "IOS" ]]; then
   xcodebuild -project $PWD/ios/AwesomeProject.xcodeproj -scheme AwesomeProject -configuration RELEASE OBJROOT=$PWD/ios/build SYMROOT=$PWD/ios/build -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
