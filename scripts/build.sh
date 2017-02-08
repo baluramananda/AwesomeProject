@@ -6,5 +6,5 @@ if [[ "$DEV" = "IOS" ]]; then
 fi
 
 if [[ "$DEV" = "ANDROID" ]]; then
-  cd android && ./gradlew build
+  cd android && ./gradlew assembleRelease
 fi
