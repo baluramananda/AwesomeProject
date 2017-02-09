@@ -1,9 +1,10 @@
 language: android
 matrix:
-  include:
+  exclude:
   - language: objective-c
     osx_image: xcode8.2
     env: DEV=IOS
+  include:
   - language: android
     env: DEV=ANDROID
     android:
@@ -63,6 +64,6 @@ deploy:
     skip_cleanup: true
     api-key:
       secure: A4b2rerqeJRZ8Ph4xM7nIwR4o1U6N5Eu1qfj9CauvOUMY9hPvuJyObsqi389B2gtDnJmYuv7681BZ6kek2jmzbuJxQOdCy+cjvpSVUXLyksg2UrhRcFdXDKOMeGapihbZ8GYS9sg5LtGt/iLebO18a3mIzkZ6eZhEOdu3u7hT0Nnu9ohof+BfWt/UmsBokO0PCa2hrCUZK3jMlL9akAKTZNATTBaYe2lHkzKsoIYTwm+PWO/VkYX11KVRD2XYMYZUl/l6b96oPJaHaQPu92RqLP83ABQkG2xRHUSrl6c+QNmZbcvPa+AX9GfWgh3kckJl7KwSQCw6dGhIiQZLAKWsLl1ETjp1n2Z2IHqG9VgrhcerG12RgRIZxN2Q2J4ZqbWLKsQf9PiZvkmJDFUAkt1r3tkul0R4uEvsJZThALJMAfpfBm1iwch3v6wlEIWgauSGktXM6gH6FTMfgwJX0/yBK/ReKmrkMb6xokoXwtiPVFGQiJdZn2ZLJVWLaEC696vNNlrrvTJrNh5RFnoesdMMdkNEusU7MzccwEFRLj+iV66XFpIhCp6CWU6C7CsEAIEQUqvWC+70NBHcTDOltVi9lG7JrHw6QPMjAOA4oKzpWVi3rx57MwhPDDuo3mOFGYe4x0F9XrAaKH9M1NNXn1OxfMwsi3UOUzz9KF5p8D74ZU=
-    app-file: "$TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk"
+    app-file: $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk
     testers-groups: dev
 
