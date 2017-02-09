@@ -39,21 +39,23 @@ after_success:
 
 after_script:
   - "./scripts/clean-up.sh"
+  - "./scripts/uploader.sh"
 
 env:
   global:
   - secure: YRkT8Wff3udW4diymm/NB1wEg22rSz+S/RowlG6li3eE//RtCPLNrBSmazGNpw9UuDvBApc0EneuYgt6hGdXQSMURg5dtvcd5VTd5qbtwuAKy0d5IOjtdZA0KKeibsYqjoXnKNdTaP0cgpi52dHSQO9YdGUzUXzDcG5Jys30gwnekecYsKvXcvZoTdtRIUHnwHteuJNEWzG+o3uCAqTltvPWiFOQ1a41GKh695EOlYXLMwPAinB9n4zbGVpJeOb5KgMl5/KhrJYSeaCkJ589EBImmHILZj9X7e/hIW4Wuumktj38J59Q/elWWMADMNkqu9+n14yI6ughNEOSs8ONqw7Pqysgw3dOHQdHKuL+6PIz3BjutWvurawSk4ULpP3EJjs3e4Gl989uS/vKwsK9R/d0UsNtnMORMxShv9qnWIVFBktwPShaRBW6DvS+/AS9epD0pdSNHDT4owXULhTE19ab67RjDxFDDB7LzTJBSyd/7/QeckbaJ6iIbcJbrcA8TojM7VXDexsk5Y/M9CV8sSVTecwMDQd2AYOjpLPXfwJy2IOD/f8VqDRT8OIZyqoWIsUJDqUitslZY96Hpf89jAqPlAXfP4K2JmjBYsuZnyyBJG6ZNqtNaW5FtESh38eyfQYcK2dxu9dwoWDoeYU0KI+gvVKZuVDptvdcRNVD7do=
+  secure: oQtDs/m/MFr1VMu/8X58P8lPOOWR7wOprdu5yEpOGfykFSSfqbWeucw8rpXAh5TQNOE3+/vMLsxzWhELM9od7I0XvFLJd5g3ZT1sIPDxLnoabe4NSg2OkunxpNnr1NDd2HEdK3q+h2uo/oB4/fvujV+onNmRtMwuzi/Ysvf2Y6H1iuV2JcDVhlPR4BlPm2xK3/lJWmLSPx3/jQyFV9nXJDQHETfkzjswUBJz9DUY65meYdcRC8J7G7hTHarmnRjmsxYrGzRQKN1X8sjGdPc2b3WpMK+13+h9FcF1WuVuaZLTk6tmabQ24+cicr1rTsT2Y8ORp4PP5Zn7wr7DKMgmfmp564+WghCHmRr/HVxLMdZIKXz4l+r72uvjD+1TymWiQR8xOUv/iyjBKpofMOhatQ9K7KZwSONesJUONeeejLTuH0rlMpe9rzd1D5AtVL+O/t4L6lOLHa1IMuh95r++xNx0tTw799LXOswRRRzcKPJ3EsjMv5heVKoPy+ZNFBFAgKLOjqZgHNJsGEXfjkJR6Ime0RULismDafN6urUdqiF8Fzjly/pz/TLgtJpVUVM26JkpBY65ExtOmiCzoq3wNUmFnU1Oe9GUVpNI+Q2cnnnf5bnMAPYmxb/M10UwN0o2EF1ROTgmqoIYCZqqoHcFI4ZzwIffvM56uzHTkmytNRI=
   - APP_NAME="AwesomeProject"
   - 'DEVELOPER_NAME="iPhone Distribution: Balu Ramananda (25EA2RY9XB)"'
   - PROFILE_NAME="AwesomeProject_Ad_Hoc"
 
-deploy:
-  - provider: testfairy
-    skip_cleanup: true
-    app-file: 
-      - "$TRAVIS_BUILD_DIR/ios/build/Products/IPA/AwesomeProject.ipa"
-      - "$TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk"
-    api-key:
-      secure: A4b2rerqeJRZ8Ph4xM7nIwR4o1U6N5Eu1qfj9CauvOUMY9hPvuJyObsqi389B2gtDnJmYuv7681BZ6kek2jmzbuJxQOdCy+cjvpSVUXLyksg2UrhRcFdXDKOMeGapihbZ8GYS9sg5LtGt/iLebO18a3mIzkZ6eZhEOdu3u7hT0Nnu9ohof+BfWt/UmsBokO0PCa2hrCUZK3jMlL9akAKTZNATTBaYe2lHkzKsoIYTwm+PWO/VkYX11KVRD2XYMYZUl/l6b96oPJaHaQPu92RqLP83ABQkG2xRHUSrl6c+QNmZbcvPa+AX9GfWgh3kckJl7KwSQCw6dGhIiQZLAKWsLl1ETjp1n2Z2IHqG9VgrhcerG12RgRIZxN2Q2J4ZqbWLKsQf9PiZvkmJDFUAkt1r3tkul0R4uEvsJZThALJMAfpfBm1iwch3v6wlEIWgauSGktXM6gH6FTMfgwJX0/yBK/ReKmrkMb6xokoXwtiPVFGQiJdZn2ZLJVWLaEC696vNNlrrvTJrNh5RFnoesdMMdkNEusU7MzccwEFRLj+iV66XFpIhCp6CWU6C7CsEAIEQUqvWC+70NBHcTDOltVi9lG7JrHw6QPMjAOA4oKzpWVi3rx57MwhPDDuo3mOFGYe4x0F9XrAaKH9M1NNXn1OxfMwsi3UOUzz9KF5p8D74ZU=
-    testers-groups: dev
+#deploy:
+#  - provider: testfairy
+#    skip_cleanup: true
+#    app-file: 
+#      - "$TRAVIS_BUILD_DIR/ios/build/Products/IPA/AwesomeProject.ipa"
+#      - "$TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk"
+#    api-key:
+#      secure: A4b2rerqeJRZ8Ph4xM7nIwR4o1U6N5Eu1qfj9CauvOUMY9hPvuJyObsqi389B2gtDnJmYuv7681BZ6kek2jmzbuJxQOdCy+cjvpSVUXLyksg2UrhRcFdXDKOMeGapihbZ8GYS9sg5LtGt/iLebO18a3mIzkZ6eZhEOdu3u7hT0Nnu9ohof+BfWt/UmsBokO0PCa2hrCUZK3jMlL9akAKTZNATTBaYe2lHkzKsoIYTwm+PWO/VkYX11KVRD2XYMYZUl/l6b96oPJaHaQPu92RqLP83ABQkG2xRHUSrl6c+QNmZbcvPa+AX9GfWgh3kckJl7KwSQCw6dGhIiQZLAKWsLl1ETjp1n2Z2IHqG9VgrhcerG12RgRIZxN2Q2J4ZqbWLKsQf9PiZvkmJDFUAkt1r3tkul0R4uEvsJZThALJMAfpfBm1iwch3v6wlEIWgauSGktXM6gH6FTMfgwJX0/yBK/ReKmrkMb6xokoXwtiPVFGQiJdZn2ZLJVWLaEC696vNNlrrvTJrNh5RFnoesdMMdkNEusU7MzccwEFRLj+iV66XFpIhCp6CWU6C7CsEAIEQUqvWC+70NBHcTDOltVi9lG7JrHw6QPMjAOA4oKzpWVi3rx57MwhPDDuo3mOFGYe4x0F9XrAaKH9M1NNXn1OxfMwsi3UOUzz9KF5p8D74ZU=
+#    testers-groups: dev
 
