@@ -1,10 +1,8 @@
 language: android
 matrix:
-  exclude:
   - language: objective-c
     osx_image: xcode8.2
     env: DEV=IOS
-  include:
   - language: android
     env: DEV=ANDROID
     android:
