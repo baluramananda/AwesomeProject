@@ -1,10 +1,8 @@
 language: android
 matrix:
-  exclude:
   - language: objective-c
     osx_image: xcode8.2
     env: DEV=IOS
-  include:
   - language: android
     env: DEV=ANDROID
     android:
@@ -52,7 +50,7 @@ env:
 deploy:
   - provider: testfairy
     skip_cleanup: true
-    file: 
+    app-file: 
       - "$TRAVIS_BUILD_DIR/ios/build/Products/IPA/AwesomeProject.ipa"
       - "$TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk"
     api-key:
