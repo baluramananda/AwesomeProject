@@ -1,5 +1,6 @@
 language: android
 matrix:
+  include:
   - language: objective-c
     osx_image: xcode8.2
     env: DEV=IOS
